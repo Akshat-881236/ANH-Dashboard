@@ -1,0 +1,1353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<!-- =====================================================
+SEO
+===================================================== -->
+<link rel="icon" href="https://akshat-881236.github.io/TrackerJS/Assets/AKNH/icon-192.png" type="image/png">
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+ANH Admin Dashboard
+</title>
+
+<meta
+name="description"
+content="ANH Admin Dashboard - User Analytics, Visit History and Feedback Management">
+
+<meta
+name="keywords"
+content="ANH Admin Dashboard, Firebase Analytics, Visit Logs, Feedback System">
+
+<meta
+name="author"
+content="Akshat Prasad">
+
+<meta
+name="robots"
+content="index, follow">
+
+<meta
+property="og:title"
+content="ANH Admin Dashboard">
+
+<meta
+property="og:description"
+content="Centralized Admin Analytics Dashboard">
+
+<link
+rel="canonical"
+href="https://anh-dashboard-881238.web.app/admin.html">
+
+<!-- =====================================================
+STYLE
+===================================================== -->
+
+<style>
+
+/* =====================================================
+RESET
+===================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#0f172a;
+    color:white;
+    overflow-x:hidden;
+}
+
+/* =====================================================
+LOGIN
+===================================================== */
+
+.loginWrapper{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+}
+
+.loginCard{
+    width:100%;
+    max-width:420px;
+    background:#1e293b;
+    border:1px solid #334155;
+    border-radius:16px;
+    padding:25px;
+}
+
+.loginCard h2{
+    margin-bottom:15px;
+}
+
+.loginCard p{
+    color:#cbd5e1;
+    margin-bottom:10px;
+}
+
+/* =====================================================
+INPUTS
+===================================================== */
+
+input,
+button{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:10px;
+    margin-top:12px;
+}
+
+input{
+    background:#0f172a;
+    color:white;
+    border:1px solid #475569;
+}
+
+button{
+    background:#2563eb;
+    color:white;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+button:hover{
+    opacity:0.9;
+}
+
+/* =====================================================
+HEADER
+===================================================== */
+
+header{
+    background:#111827;
+    padding:15px;
+    border-bottom:1px solid #334155;
+}
+
+.headerContainer{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.adminInfo{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.adminInfo img{
+    width:80px;
+    height:80px;
+    border-radius:50%;
+    object-fit:cover;
+    border:3px solid white;
+}
+
+.adminMeta h2{
+    font-size:22px;
+}
+
+.adminMeta p{
+    color:#cbd5e1;
+    margin-top:4px;
+}
+
+/* =====================================================
+LAYOUT
+===================================================== */
+
+.dashboard{
+    display:flex;
+    min-height:100vh;
+}
+
+/* =====================================================
+SIDEBAR
+===================================================== */
+
+.sidebar{
+    width:260px;
+    background:#111827;
+    border-right:1px solid #334155;
+    padding:20px;
+}
+
+.sidebar button{
+    text-align:left;
+}
+
+/* =====================================================
+CONTENT
+===================================================== */
+
+.content{
+    flex:1;
+    padding:20px;
+}
+
+.card{
+    background:#1e293b;
+    border:1px solid #334155;
+    border-radius:14px;
+    padding:20px;
+    margin-bottom:20px;
+}
+
+.card h2{
+    margin-bottom:15px;
+}
+
+/* =====================================================
+TABLE
+===================================================== */
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+table th,
+table td{
+    border:1px solid #475569;
+    padding:12px;
+    text-align:left;
+}
+
+table th{
+    background:#111827;
+}
+
+/* =====================================================
+SPA
+===================================================== */
+
+.tabSection{
+    display:none;
+}
+
+.activeTab{
+    display:block;
+}
+
+/* =====================================================
+STATUS
+===================================================== */
+
+.success{
+    color:#22c55e;
+    margin-top:10px;
+}
+
+.error{
+    color:#ef4444;
+    margin-top:10px;
+}
+
+/* =====================================================
+RESPONSIVE
+===================================================== */
+
+@media(max-width:992px){
+
+    .dashboard{
+        flex-direction:column;
+    }
+
+    .sidebar{
+        width:100%;
+        display:flex;
+        overflow-x:auto;
+        gap:10px;
+    }
+
+    .sidebar button{
+        min-width:180px;
+    }
+
+    table{
+        display:block;
+        overflow-x:auto;
+    }
+
+}
+
+@media(max-width:600px){
+
+    .content{
+        padding:12px;
+    }
+
+    .adminInfo{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+}
+
+</style>
+<script src="https://akshat-881236.github.io/TrackerJS/MITLicense-Term-of-Use--Privacy.min.js" defer></script>
+<script src="https://akshat-881236.github.io/TrackerJS/akshatnetworkhub.min.js" defer></script>
+<script src="https://akshat-881236.github.io/TrackerJS/akshat-add-nav.js" defer></script>
+<script src="https://akshat-881236.github.io/TrackerJS/redirect.js" defer></script>
+</head>
+
+<body>
+
+<!-- =====================================================
+LOGIN
+===================================================== -->
+
+<section
+id="loginSection"
+class="loginWrapper">
+
+<div class="loginCard">
+
+    <h2>
+        ANH Admin Authentication
+    </h2>
+
+    <p>
+        Authorized Admin Access Only
+    </p>
+
+    <button id="googleLoginBtn">
+
+        Continue with Google
+
+    </button>
+
+    <input
+    type="date"
+    id="adminDOB">
+
+    <input
+    type="password"
+    id="adminPassword"
+    placeholder="Admin Password">
+
+    <button id="verifyAdminBtn">
+
+        Verify Admin Access
+
+    </button>
+
+    <p id="loginStatus"></p>
+
+</div>
+
+</section>
+
+<!-- =====================================================
+ADMIN DASHBOARD
+===================================================== -->
+
+<section
+id="dashboardSection"
+style="display:none;">
+
+<header>
+
+<div class="headerContainer">
+
+    <div class="adminInfo">
+
+        <img
+        id="adminPhoto"
+        src="https://via.placeholder.com/80">
+
+        <div class="adminMeta">
+
+            <h2 id="adminName">
+                Admin
+            </h2>
+
+            <p id="adminEmail"></p>
+
+        </div>
+
+    </div>
+
+    <button
+    id="logoutBtn"
+    style="max-width:180px;">
+
+        Logout
+
+    </button>
+
+</div>
+
+</header>
+
+<div class="dashboard">
+
+<!-- =====================================================
+SIDEBAR
+===================================================== -->
+
+<div class="sidebar">
+
+    <button onclick="openTab('usersTab')">
+        All Users
+    </button>
+
+    <button onclick="openTab('analyticsTab')">
+        Pages Analytics
+    </button>
+
+    <button onclick="openTab('feedbackTab')">
+        Feedbacks
+    </button>
+
+</div>
+
+<!-- =====================================================
+CONTENT
+===================================================== -->
+
+<div class="content">
+
+<!-- USERS -->
+
+<section
+id="usersTab"
+class="tabSection activeTab">
+
+<div class="card">
+
+    <h2>
+        All Users
+    </h2>
+
+    <table>
+
+        <thead>
+
+            <tr>
+
+                <th>User ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Whatsapp</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody id="usersTable">
+
+        </tbody>
+
+    </table>
+
+</div>
+
+</section>
+
+<!-- ANALYTICS -->
+
+<section
+id="analyticsTab"
+class="tabSection">
+
+<div class="card">
+
+    <h2>
+        User Wise Page Analytics
+    </h2>
+
+    <table>
+
+        <thead>
+
+    <tr>
+
+        <th>User</th>
+
+        <th>Log ID</th>
+
+        <th>Current Page</th>
+
+        <th>Device</th>
+
+        <th>Previous</th>
+
+        <th>Next</th>
+
+        <th>Viewport</th>
+
+        <th>Load Time</th>
+
+        <th>Warnings</th>
+
+        <th>Timestamp</th>
+
+    </tr>
+
+</thead>
+
+        <tbody id="analyticsTable">
+
+        </tbody>
+
+    </table>
+
+</div>
+
+</section>
+
+<!-- FEEDBACK -->
+
+<section
+id="feedbackTab"
+class="tabSection">
+
+<div class="card">
+
+    <h2>
+        User Feedbacks
+    </h2>
+
+    <table>
+
+        <thead>
+
+            <tr>
+
+                <th>User</th>
+                <th>Log ID</th>
+                <th>Title</th>
+                <th>Feedback</th>
+                <th>Timestamp</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody id="feedbackTable">
+
+        </tbody>
+
+    </table>
+
+</div>
+
+</section>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- =====================================================
+FIREBASE
+===================================================== -->
+
+<script type="module">
+
+/* =====================================================
+IMPORTS
+===================================================== */
+
+import { initializeApp }
+
+from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
+
+import {
+
+    getAuth,
+    GoogleAuthProvider,
+    signInWithPopup,
+    onAuthStateChanged,
+    signOut
+
+}
+
+from "https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js";
+
+import {
+
+    getFirestore,
+    collection,
+    getDocs
+
+}
+
+from "https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
+
+/* =====================================================
+CONFIG
+===================================================== */
+
+const firebaseConfig = {
+
+    apiKey: "AIzaSyAdlZ6GuhAcHSTZHVZJjoPx1V1zKg5tV3I",
+
+    authDomain:
+    "anh-dashboard-881238.firebaseapp.com",
+
+    projectId:
+    "anh-dashboard-881238",
+
+    storageBucket:
+    "anh-dashboard-881238.firebasestorage.app",
+
+    messagingSenderId:
+    "384383636180",
+
+    appId: "1:384383636180:web:326d7dcb3d4fafd3b5e141",
+    measurementId: "G-829D05T06E"
+
+};
+
+/* =====================================================
+INIT
+===================================================== */
+
+const app =
+initializeApp(firebaseConfig);
+
+const auth =
+getAuth(app);
+
+const provider =
+new GoogleAuthProvider();
+
+const db =
+getFirestore(app);
+
+/* =====================================================
+DOM
+===================================================== */
+
+const loginSection =
+document.getElementById(
+    "loginSection"
+);
+
+const dashboardSection =
+document.getElementById(
+    "dashboardSection"
+);
+
+/* =====================================================
+GOOGLE LOGIN
+===================================================== */
+
+document
+.getElementById(
+    "googleLoginBtn"
+)
+.addEventListener(
+    "click",
+    async()=>{
+
+        try{
+
+            await signInWithPopup(
+                auth,
+                provider
+            );
+
+        }
+        catch(error){
+
+            console.log(error);
+
+        }
+
+    }
+);
+
+/* =====================================================
+AUTH STATE
+===================================================== */
+
+onAuthStateChanged(auth,(user)=>{
+
+    if(user){
+
+        document
+        .getElementById(
+            "adminPhoto"
+        )
+        .src =
+
+        user.photoURL ||
+
+        "https://via.placeholder.com/80";
+
+        document
+        .getElementById(
+            "adminName"
+        )
+        .innerHTML =
+
+        user.displayName;
+
+        document
+        .getElementById(
+            "adminEmail"
+        )
+        .innerHTML =
+
+        user.email;
+
+    }
+
+});
+
+/* =====================================================
+VERIFY ADMIN
+===================================================== */
+
+document
+.getElementById(
+    "verifyAdminBtn"
+)
+.addEventListener(
+    "click",
+    async()=>{
+
+        const user =
+        auth.currentUser;
+
+        const dob =
+        document
+        .getElementById(
+            "adminDOB"
+        )
+        .value;
+
+        const password =
+        document
+        .getElementById(
+            "adminPassword"
+        )
+        .value;
+
+        const status =
+        document
+        .getElementById(
+            "loginStatus"
+        );
+
+        if(!user){
+
+            status.innerHTML =
+            "Google Login Required";
+
+            status.className =
+            "error";
+
+            return;
+
+        }
+
+        /* =====================================
+           EMAIL CHECK
+        ===================================== */
+
+        if(
+
+            user.email !==
+
+            "its.akshatnetworkhub23@gmail.com"
+
+        ){
+
+            status.innerHTML =
+            "Unauthorized Admin Email";
+
+            status.className =
+            "error";
+
+            return;
+
+        }
+
+        /* =====================================
+           DOB OR PASSWORD
+        ===================================== */
+
+        const validDOB =
+        dob === "2004-03-31";
+
+        const validPassword =
+        password === "ANH310304";
+
+        if(
+
+            validDOB ||
+
+            validPassword
+
+        ){
+
+            loginSection.style.display =
+            "none";
+
+            dashboardSection.style.display =
+            "block";
+
+            loadUsers();
+
+            loadAnalytics();
+
+            loadFeedbacks();
+
+        }
+        else{
+
+            status.innerHTML =
+            "Invalid DOB or Password";
+
+            status.className =
+            "error";
+
+        }
+
+    }
+);
+
+/* =====================================================
+SPA
+===================================================== */
+
+window.openTab = function(tabId){
+
+    const sections =
+    document.querySelectorAll(
+        ".tabSection"
+    );
+
+    sections.forEach(section=>{
+
+        section.classList.remove(
+            "activeTab"
+        );
+
+    });
+
+    document
+    .getElementById(tabId)
+    .classList
+    .add("activeTab");
+
+}
+
+/* =====================================================
+LOAD USERS
+===================================================== */
+
+async function loadUsers(){
+
+    const table =
+    document.getElementById(
+        "usersTable"
+    );
+
+    table.innerHTML = "";
+
+    const snapshot =
+    await getDocs(
+        collection(db,"users")
+    );
+
+    snapshot.forEach(doc=>{
+
+        const data =
+        doc.data();
+
+        table.innerHTML += `
+
+            <tr>
+
+                <td>
+                    ${data.user_id || "-"}
+                </td>
+
+                <td>
+                    ${data.full_name || "-"}
+                </td>
+
+                <td>
+                    ${data.email || "-"}
+                </td>
+
+                <td>
+                    ${data.whatsapp || "-"}
+                </td>
+
+            </tr>
+
+        `;
+
+    });
+
+}
+
+/* =====================================================
+ADVANCED ADMIN ANALYTICS ENGINE
+ADMIN CAN WATCH ALL USER LOGS
+REPLACE COMPLETE loadAnalytics()
+===================================================== */
+
+async function loadAnalytics(){
+
+    const table =
+    document.getElementById(
+        "analyticsTable"
+    );
+
+    table.innerHTML = "";
+
+    try{
+
+        /* =====================================
+           FETCH ALL LOGS
+        ===================================== */
+
+        const snapshot =
+        await getDocs(
+            collection(db,"visit_logs")
+        );
+
+        /* =====================================
+           LOCAL ARRAY
+        ===================================== */
+
+        const logs = [];
+
+        snapshot.forEach(docSnap=>{
+
+            logs.push({
+
+                firestore_id:
+                docSnap.id,
+
+                ...docSnap.data()
+
+            });
+
+        });
+
+        /* =====================================
+           SORT DESCENDING
+        ===================================== */
+
+        logs.sort((a,b)=>{
+
+            return new Date(
+                b.timestamp
+            ) -
+
+            new Date(
+                a.timestamp
+            );
+
+        });
+
+        /* =====================================
+           EMPTY STATE
+        ===================================== */
+
+        if(logs.length === 0){
+
+            table.innerHTML = `
+
+                <tr>
+
+                    <td colspan="10">
+
+                        No Analytics Found
+
+                    </td>
+
+                </tr>
+
+            `;
+
+            return;
+
+        }
+
+        /* =====================================
+           RENDER ALL LOGS
+        ===================================== */
+
+        logs.forEach(data=>{
+
+            /* =================================
+               NEW STRUCTURE
+            ================================= */
+
+            const current =
+            data.current || {};
+
+            const previous =
+            data.previous || {};
+
+            const next =
+            data.next || {};
+
+            const diagnostics =
+            data.diagnostics || {};
+
+            const warnings =
+            diagnostics.warnings || [];
+
+            /* =================================
+               USER LABEL
+            ================================= */
+
+            const userLabel =
+
+                data.email ||
+
+                data.uid ||
+
+                "Unknown User";
+
+            /* =================================
+               TABLE ROW
+            ================================= */
+
+            table.innerHTML += `
+
+                <tr>
+
+                    <!-- USER -->
+
+                    <td>
+
+                        <div
+                        style="
+                        display:flex;
+                        flex-direction:column;
+                        gap:4px;">
+
+                            <span
+                            style="
+                            font-weight:bold;">
+
+                                ${userLabel}
+
+                            </span>
+
+                            <small
+                            style="
+                            color:#94a3b8;">
+
+                                ${data.uid || "-"}
+
+                            </small>
+
+                        </div>
+
+                    </td>
+
+                    <!-- LOG ID -->
+
+                    <td>
+
+                        ${current.log_id || "-"}
+
+                    </td>
+
+                    <!-- CURRENT PAGE -->
+
+                    <td>
+
+                        <div
+                        style="
+                        display:flex;
+                        flex-direction:column;
+                        gap:5px;">
+
+                            <span>
+
+                                ${current.title || "-"}
+
+                            </span>
+
+                            <a
+                            href="${current.url || '#'}"
+                            target="_blank"
+                            style="
+                            color:#60a5fa;
+                            font-size:12px;
+                            word-break:break-all;">
+
+                                Open Page
+
+                            </a>
+
+                        </div>
+
+                    </td>
+
+                    <!-- DEVICE -->
+
+                    <td>
+
+                        <div
+                        style="
+                        display:flex;
+                        flex-direction:column;
+                        gap:5px;">
+
+                            <span>
+
+                                ${diagnostics.device || "-"}
+
+                            </span>
+
+                            <small
+                            style="
+                            color:#94a3b8;">
+
+                                ${diagnostics.platform || "-"}
+
+                            </small>
+
+                        </div>
+
+                    </td>
+
+                    <!-- PREVIOUS -->
+
+                    <td>
+
+                        ${
+                            previous.url ?
+
+                            `
+
+                            <a
+                            href="${previous.url}"
+                            target="_blank"
+                            style="
+                            color:#60a5fa;">
+
+                                ${previous.title || "Previous"}
+
+                            </a>
+
+                            `
+
+                            :
+
+                            "-"
+
+                        }
+
+                    </td>
+
+                    <!-- NEXT -->
+
+                    <td>
+
+                        ${
+                            next.url ?
+
+                            `
+
+                            <a
+                            href="${next.url}"
+                            target="_blank"
+                            style="
+                            color:#60a5fa;">
+
+                                ${next.title || "Next"}
+
+                            </a>
+
+                            `
+
+                            :
+
+                            "-"
+
+                        }
+
+                    </td>
+
+                    <!-- VIEWPORT -->
+
+                    <td>
+
+                        ${diagnostics.viewport || "-"}
+
+                    </td>
+
+                    <!-- LOAD TIME -->
+
+                    <td>
+
+                        ${diagnostics.load_time || "-"}
+
+                    </td>
+
+                    <!-- WARNINGS -->
+
+                    <td>
+
+                        ${
+                            warnings.length > 0
+
+                            ?
+
+                            warnings.length +
+                            " Warning(s)"
+
+                            :
+
+                            "Clean"
+
+                        }
+
+                    </td>
+
+                    <!-- TIMESTAMP -->
+
+                    <td>
+
+                        ${new Date(
+                            data.timestamp
+                        ).toLocaleString()}
+
+                    </td>
+
+                </tr>
+
+            `;
+
+        });
+
+        console.log(
+            "All User Analytics Loaded"
+        );
+
+    }
+    catch(error){
+
+        console.error(
+            "Analytics Engine Error",
+            error
+        );
+
+        table.innerHTML = `
+
+            <tr>
+
+                <td colspan="10">
+
+                    Analytics Load Failed
+
+                </td>
+
+            </tr>
+
+        `;
+
+    }
+
+}
+
+/* =====================================================
+LOAD FEEDBACKS
+===================================================== */
+
+async function loadFeedbacks(){
+
+    const table =
+    document.getElementById(
+        "feedbackTable"
+    );
+
+    table.innerHTML = "";
+
+    const snapshot =
+    await getDocs(
+        collection(db,"feedbacks")
+    );
+
+    snapshot.forEach(doc=>{
+
+        const data =
+        doc.data();
+
+        table.innerHTML += `
+
+            <tr>
+
+                <td>
+                    ${data.email || "-"}
+                </td>
+
+                <td>
+                    ${data.log_id || "-"}
+                </td>
+
+                <td>
+                    ${data.title || "-"}
+                </td>
+
+                <td>
+                    ${data.feedback || "-"}
+                </td>
+
+                <td>
+                    ${data.timestamp || "-"}
+                </td>
+
+            </tr>
+
+        `;
+
+    });
+
+}
+
+/* =====================================================
+LOGOUT
+===================================================== */
+
+document
+.getElementById(
+    "logoutBtn"
+)
+.addEventListener(
+    "click",
+    async()=>{
+
+        await signOut(auth);
+
+        window.location.reload();
+
+    }
+);
+
+</script>
+
+</body>
+</html>

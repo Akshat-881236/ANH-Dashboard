@@ -1,0 +1,2712 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<!-- =========================================
+SEO
+========================================= -->
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+Akshat Network Hub Dashboard
+</title>
+
+<meta
+name="description"
+content="Akshat Network Hub Dashboard - User Visit History, Diagnostics and Feedback System">
+
+<meta
+name="keywords"
+content="Akshat Network Hub Dashboard, Firebase Dashboard, Visit History, Diagnostics">
+
+<meta
+name="author"
+content="Akshat Prasad">
+
+<meta
+name="robots"
+content="index, follow">
+
+<meta
+property="og:title"
+content="Akshat Network Hub Dashboard">
+
+<meta
+property="og:description"
+content="Akshat Network Hub Dashboard - User Visit History, Diagnostics and Feedback System">
+
+<meta property="og:image" content="https://akshat-881236.github.io/TrackerJS/Assets/AKNH/icon-192.png">
+
+<meta property="og:url" content="https://anh-dashboard-881238.web.app">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Akshat Network Hub Dashboard">
+<meta name="twitter:description" content="Akshat Network Hub Dashboard - User Visit History, Diagnostics and Feedback System">
+<meta name="twitter:image" content="https://akshat-881236.github.io/TrackerJS/Assets/AKNH/icon-192.png">
+<meta name="twitter:url" content="https://anh-dashboard-881238.web.app">
+
+<link rel="icon" href="https://akshat-881236.github.io/TrackerJS/Assets/AKNH/icon-192.png" type="image/png">
+
+<link
+rel="canonical"
+href="https://anh-dashboard-881238.web.app">
+
+<!-- =========================================
+STYLE
+========================================= -->
+
+<style>
+
+/* =========================================
+RESET
+========================================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#0f172a;
+    color:white;
+    overflow-x:hidden;
+}
+
+/* =========================================
+HEADER
+========================================= */
+
+header{
+    background:#111827;
+    padding:15px;
+    border-bottom:1px solid #334155;
+}
+
+.headerContainer{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.userInfo{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.userInfo img{
+    width:90px;
+    height:90px;
+    border-radius:50%;
+    object-fit:cover;
+    border:3px solid white;
+}
+
+.userMeta h2{
+    font-size:22px;
+}
+
+.userMeta p{
+    color:#cbd5e1;
+    margin-top:4px;
+}
+
+/* =========================================
+LAYOUT
+========================================= */
+
+.mainContainer{
+    display:flex;
+    min-height:100vh;
+}
+
+/* =========================================
+SIDEBAR
+========================================= */
+
+.sidebar{
+    width:260px;
+    background:#111827;
+    padding:20px;
+    border-right:1px solid #334155;
+}
+
+.sidebar button{
+    width:100%;
+    padding:14px;
+    margin-bottom:10px;
+    border:none;
+    border-radius:10px;
+    background:#1e293b;
+    color:white;
+    cursor:pointer;
+    text-align:left;
+    font-weight:bold;
+}
+
+.sidebar button:hover{
+    background:#2563eb;
+}
+
+/* =========================================
+CONTENT
+========================================= */
+
+.content{
+    flex:1;
+    padding:20px;
+}
+
+.card{
+    background:#1e293b;
+    border:1px solid #334155;
+    border-radius:14px;
+    padding:20px;
+    margin-bottom:20px;
+}
+
+.card h2{
+    margin-bottom:15px;
+}
+
+/* =========================================
+TABLE
+========================================= */
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+table th,
+table td{
+    border:1px solid #475569;
+    padding:12px;
+    text-align:left;
+}
+
+table th{
+    background:#111827;
+}
+
+/* =========================================
+FORM
+========================================= */
+
+input,
+textarea,
+select,
+button{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:8px;
+    margin-top:10px;
+}
+
+input,
+textarea,
+select{
+    background:#0f172a;
+    color:white;
+    border:1px solid #475569;
+}
+
+button{
+    background:#2563eb;
+    color:white;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+button:hover{
+    opacity:0.9;
+}
+
+/* =========================================
+SPA
+========================================= */
+
+.tabSection{
+    display:none;
+}
+
+.activeTab{
+    display:block;
+}
+
+/* =========================================
+STATUS
+========================================= */
+
+.success{
+    color:#22c55e;
+    margin-top:10px;
+}
+
+.error{
+    color:#ef4444;
+    margin-top:10px;
+}
+
+/* =========================================
+RESPONSIVE
+========================================= */
+
+@media(max-width:992px){
+
+    .mainContainer{
+        flex-direction:column;
+    }
+
+    .sidebar{
+        width:100%;
+        display:flex;
+        overflow-x:auto;
+        gap:10px;
+    }
+
+    .sidebar button{
+        min-width:180px;
+    }
+
+    table{
+        display:block;
+        overflow-x:auto;
+    }
+
+}
+
+@media(max-width:600px){
+
+    .headerContainer{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .userInfo{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .userInfo img{
+        width:70px;
+        height:70px;
+    }
+
+    .content{
+        padding:12px;
+    }
+
+}
+
+.hidden{
+    display:none;
+}
+
+#profilePreview{
+    display:block;
+}
+
+/* =========================================
+FIX SPA TAB BUG
+ADD THIS INSIDE <style>
+========================================= */
+
+.tabSection{
+    display:none;
+}
+
+.tabSection.activeTab{
+    display:block;
+}
+
+/* =========================================
+OPTIONAL BETTER ACTIVE BUTTON UI
+ADD INSIDE <style>
+========================================= */
+
+.sidebar button.activeSidebarBtn{
+
+    background:#2563eb;
+
+    border:1px solid #60a5fa;
+
+}
+
+</style>
+<script src="https://akshat-881236.github.io/TrackerJS/MITLicense-Term-of-Use--Privacy.min.js" defer></script>
+<script src="https://akshat-881236.github.io/TrackerJS/akshatnetworkhub.min.js" defer></script>
+<script src="https://akshat-881236.github.io/TrackerJS/akshat-add-nav.js" defer></script>
+<script src="https://akshat-881236.github.io/TrackerJS/redirect.js" defer></script>
+</head>
+
+<body>
+
+<!-- =========================================
+AUTH SECTION
+ADD THIS BELOW <body>
+========================================= -->
+
+<section
+id="authSection"
+class="card"
+style="
+max-width:500px;
+margin:30px auto;">
+
+    <h2>
+        ANH Authentication
+    </h2>
+
+    <p>
+        Continue with Google
+    </p>
+
+    <button
+    id="googleLoginBtn">
+
+        Continue with Google
+
+    </button>
+
+</section>
+
+<!-- =========================================
+PROFILE SECTION
+ADD THIS BELOW authSection
+========================================= -->
+
+<section
+id="profileSection"
+class="card hidden"
+style="
+max-width:700px;
+margin:30px auto;">
+
+    <h2>
+        Complete Your Profile
+    </h2>
+
+    <!-- FULL NAME -->
+
+    <input
+    type="text"
+    id="fullName"
+    placeholder="Full Name">
+
+    <!-- EMAIL -->
+
+    <input
+    type="email"
+    id="email"
+    placeholder="Email"
+    readonly>
+
+    <!-- DOB -->
+
+    <input
+    type="date"
+    id="dob">
+
+    <!-- PROFILE PHOTO URL -->
+
+    <input
+    type="url"
+    id="profileURL"
+    placeholder="Profile Photo URL">
+
+    <!-- IMAGE PREVIEW -->
+
+    <img
+
+    id="profilePreview"
+
+    src="https://via.placeholder.com/120"
+
+    style="
+    width:120px;
+    height:120px;
+    border-radius:50%;
+    object-fit:cover;
+    margin-top:15px;
+    border:3px solid white;">
+
+    <!-- WHATSAPP -->
+
+    <input
+    type="tel"
+    id="whatsapp"
+    placeholder="Whatsapp Number">
+
+    <!-- SAVE -->
+
+    <button
+    id="saveProfileBtn">
+
+        Save Profile
+
+    </button>
+
+    <!-- STATUS -->
+
+    <p id="profileStatus"></p>
+
+</section>
+
+<!-- =========================================
+HEADER
+========================================= -->
+
+<header>
+
+<div class="headerContainer">
+
+    <div class="userInfo">
+
+        <img
+        id="userPhoto"
+        src="https://via.placeholder.com/90">
+
+        <div class="userMeta">
+
+            <h2 id="userName">
+                Loading...
+            </h2>
+
+            <p id="userEmail"></p>
+
+            <p id="userID"></p>
+
+        </div>
+
+    </div>
+
+    <button
+    id="logoutBtn"
+    style="max-width:200px;">
+
+        Logout
+
+    </button>
+
+</div>
+
+</header>
+
+<!-- =========================================
+MAIN
+========================================= -->
+
+<div class="mainContainer hidden">
+
+<!-- =========================================
+SIDEBAR
+========================================= -->
+
+<div class="sidebar">
+
+    <button onclick="openTab(event,'dashboardTab')">
+        Dashboard
+    </button>
+
+    <button onclick="openTab(event,'profileTab')">
+        Profile
+    </button>
+
+    <button onclick="openTab(event,'visitTab')">
+        Visit History
+    </button>
+
+    <button onclick="openTab(event,'feedbackTab')">
+        Feedback
+    </button>
+
+    <button id="adminBtn" style="display:none;" onclick="visitAdmin()">
+        Admin
+    </button>
+
+</div>
+
+<!-- =========================================
+CONTENT
+========================================= -->
+
+<div class="content">
+
+<!-- =========================================
+DASHBOARD
+========================================= -->
+
+<section
+id="dashboardTab"
+class="tabSection activeTab">
+
+<div class="card">
+
+    <h2>
+        Analytics Overview
+    </h2>
+
+    <p>
+        Welcome to ANH Dashboard
+    </p>
+
+</div>
+
+</section>
+
+<!-- =========================================
+PROFILE
+========================================= -->
+
+<section
+id="profileTab"
+class="tabSection">
+
+<div class="card">
+
+    <h2>
+        Profile Information
+    </h2>
+
+    <p id="profileDetails"></p>
+
+</div>
+
+</section>
+
+<!-- =========================================
+VISIT HISTORY
+========================================= -->
+
+<section
+id="visitTab"
+class="tabSection">
+
+<div class="card">
+
+    <h2>
+        Visit History
+    </h2>
+
+    <table>
+
+        <thead>
+
+            <tr>
+
+                <th>Log_ID</th>
+                <th>Title</th>
+                <th>Device</th>
+                <th>Previous</th>
+                <th>Next</th>
+                <th>Diagnostic</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody
+        id="visitTable">
+
+        </tbody>
+
+    </table>
+
+</div>
+
+</section>
+
+<!-- =========================================
+FEEDBACK
+========================================= -->
+
+<section
+id="feedbackTab"
+class="tabSection">
+
+<div class="card">
+
+    <h2>
+        Smart Feedback System
+    </h2>
+
+    <select id="visitedPagesSelect">
+
+        <option value="">
+            Select Visited Page
+        </option>
+
+    </select>
+
+    <input
+    type="text"
+    id="feedbackTitle"
+    placeholder="Page Title"
+    readonly>
+
+    <textarea
+    id="feedbackDescription"
+    placeholder="Description"
+    readonly></textarea>
+
+    <textarea
+    id="feedbackMessage"
+    placeholder="Write Feedback"></textarea>
+
+    <button
+    id="submitFeedbackBtn">
+
+        Submit Feedback
+
+    </button>
+
+    <p id="feedbackStatus"></p>
+
+</div>
+
+</section>
+
+</div>
+
+</div>
+
+<!-- =========================================
+FIREBASE
+========================================= -->
+
+<script type="module">
+
+/* =========================================
+IMPORTS
+========================================= */
+
+import { initializeApp }
+
+from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
+
+import {
+
+    getAuth,
+    GoogleAuthProvider,
+    signInWithPopup,
+    onAuthStateChanged,
+    signOut
+}
+
+from "https://www.gstatic.com/firebasejs/12.13.0/firebase-auth.js";
+
+import {
+
+    getFirestore,
+    collection,
+    query,
+    where,
+    getDocs,
+    orderBy,
+    addDoc,
+    doc,
+    getDoc,
+    setDoc,
+    limit
+
+}
+
+from "https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
+
+/* =========================================
+CONFIG
+========================================= */
+
+const firebaseConfig = {
+
+    apiKey:
+    "AIzaSyAdlZ6GuhAcHSTZHVZJjoPx1V1zKg5tV3I",
+
+    authDomain:
+    "anh-dashboard-881238.firebaseapp.com",
+
+    projectId:
+    "anh-dashboard-881238",
+
+    storageBucket:
+    "anh-dashboard-881238.firebasestorage.app",
+
+    messagingSenderId:
+    "384383636180",
+
+    appId:
+    "1:384383636180:web:326d7dcb3d4fafd3b5e141"
+
+};
+
+/* =========================================
+INIT
+========================================= */
+
+const app =
+initializeApp(firebaseConfig);
+
+const auth =
+getAuth(app);
+
+const provider =
+new GoogleAuthProvider();
+
+const db =
+getFirestore(app);
+
+/* =========================================
+DOM
+========================================= */
+
+const authSection =
+document.getElementById(
+    "authSection"
+);
+
+const profileSection =
+document.getElementById(
+    "profileSection"
+);
+
+const dashboardSection =
+document.querySelector(
+    ".mainContainer"
+);
+
+let selectedVisitLog = null;
+
+/* =========================================
+GOOGLE LOGIN
+========================================= */
+
+document
+.getElementById(
+    "googleLoginBtn"
+)
+.addEventListener(
+    "click",
+    async()=>{
+
+        try{
+
+            await signInWithPopup(
+                auth,
+                provider
+            );
+
+        }
+        catch(error){
+
+            alert(
+                error.message
+            );
+
+        }
+
+    }
+);
+
+/* =========================================
+PROFILE IMAGE PREVIEW
+========================================= */
+
+document
+.getElementById(
+    "profileURL"
+)
+.addEventListener(
+    "input",
+    (e)=>{
+
+        document
+        .getElementById(
+            "profilePreview"
+        )
+        .src =
+        e.target.value;
+
+    }
+);
+
+/* =========================================
+AUTH STATE
+========================================= */
+
+onAuthStateChanged(auth, async(user)=>{
+
+    /* =====================================
+       USER NOT LOGGED IN
+    ===================================== */
+
+    if(!user){
+
+        authSection.classList.remove(
+            "hidden"
+        );
+
+        profileSection.classList.add(
+            "hidden"
+        );
+
+        dashboardSection.classList.add(
+            "hidden"
+        );
+
+        return;
+
+    }
+
+    /* =====================================
+       ADMIN BUTTON
+    ===================================== */
+
+    if(
+
+        user.email ===
+
+        "its.akshatnetworkhub23@gmail.com"
+
+    ){
+
+        document
+        .getElementById(
+            "adminBtn"
+        )
+        .style.display =
+        "block";
+
+    }
+
+    /* =====================================
+       CHECK USER PROFILE
+    ===================================== */
+
+    const userRef =
+    doc(db,"users",user.uid);
+
+    const userSnap =
+    await getDoc(userRef);
+
+    /* =====================================
+       NEW USER
+    ===================================== */
+
+    if(!userSnap.exists()){
+
+        authSection.classList.add(
+            "hidden"
+        );
+
+        profileSection.classList.remove(
+            "hidden"
+        );
+
+        dashboardSection.classList.add(
+            "hidden"
+        );
+
+        /* =================================
+           AUTO FILL
+        ================================= */
+
+        document
+        .getElementById(
+            "fullName"
+        )
+        .value =
+
+        user.displayName || "";
+
+        document
+        .getElementById(
+            "email"
+        )
+        .value =
+
+        user.email || "";
+
+        return;
+
+    }
+
+    /* =====================================
+       EXISTING USER
+    ===================================== */
+
+    const data =
+    userSnap.data();
+
+    authSection.classList.add(
+        "hidden"
+    );
+
+    profileSection.classList.add(
+        "hidden"
+    );
+
+    dashboardSection.classList.remove(
+        "hidden"
+    );
+
+    /* =====================================
+       HEADER
+    ===================================== */
+
+    document
+    .getElementById(
+        "userPhoto"
+    )
+    .src =
+
+    data.profile_photo ||
+
+    user.photoURL ||
+
+    "https://via.placeholder.com/90";
+
+    document
+    .getElementById(
+        "userName"
+    )
+    .innerHTML =
+
+    data.full_name ||
+
+    user.displayName ||
+
+    "Unknown User";
+
+    document
+    .getElementById(
+        "userEmail"
+    )
+    .innerHTML =
+
+    data.email ||
+
+    user.email;
+
+    document
+    .getElementById(
+        "userID"
+    )
+    .innerHTML =
+
+    "User ID : " +
+
+    (data.user_id || "-");
+
+    /* =====================================
+       PROFILE DETAILS
+    ===================================== */
+
+    document
+    .getElementById(
+        "profileDetails"
+    )
+    .innerHTML = `
+
+        <b>Full Name :</b>
+
+        ${data.full_name || "-"}
+
+        <br><br>
+
+        <b>Email :</b>
+
+        ${data.email || "-"}
+
+        <br><br>
+
+        <b>DOB :</b>
+
+        ${data.dob || "-"}
+
+        <br><br>
+
+        <b>Whatsapp :</b>
+
+        ${data.whatsapp || "-"}
+
+    `;
+
+    /* =====================================
+       LOAD FEATURES
+    ===================================== */
+
+    loadVisitHistory();
+
+    loadVisitedPages();
+
+});
+
+/* =========================================
+SAVE PROFILE
+========================================= */
+
+document
+.getElementById(
+    "saveProfileBtn"
+)
+.addEventListener(
+    "click",
+    async()=>{
+
+        const user =
+        auth.currentUser;
+
+        if(!user){
+
+            alert(
+                "Authentication Required"
+            );
+
+            return;
+
+        }
+
+        const fullName =
+
+        document
+        .getElementById(
+            "fullName"
+        )
+        .value
+        .trim();
+
+        const email =
+
+        document
+        .getElementById(
+            "email"
+        )
+        .value
+        .trim();
+
+        const dob =
+
+        document
+        .getElementById(
+            "dob"
+        )
+        .value;
+
+        const profileURL =
+
+        document
+        .getElementById(
+            "profileURL"
+        )
+        .value
+        .trim();
+
+        const whatsapp =
+
+        document
+        .getElementById(
+            "whatsapp"
+        )
+        .value
+        .trim();
+
+        const profileStatus =
+
+        document
+        .getElementById(
+            "profileStatus"
+        );
+
+        /* =================================
+           VALIDATION
+        ================================= */
+
+        if(
+
+            !fullName ||
+
+            !email ||
+
+            !dob ||
+
+            !profileURL ||
+
+            !whatsapp
+
+        ){
+
+            profileStatus.innerHTML =
+
+            "All Fields Required";
+
+            profileStatus.className =
+            "error";
+
+            return;
+
+        }
+
+        /* =================================
+           WHATSAPP VALIDATION
+        ================================= */
+
+        const repeatedDigits =
+
+        /^(\d)\1+$/;
+
+        if(
+
+            repeatedDigits.test(
+                whatsapp
+            )
+
+        ){
+
+            profileStatus.innerHTML =
+
+            "Invalid Whatsapp Number";
+
+            profileStatus.className =
+            "error";
+
+            return;
+
+        }
+
+        if(
+
+            whatsapp.length < 10 ||
+
+            whatsapp.length > 13
+
+        ){
+
+            profileStatus.innerHTML =
+
+            "Invalid Whatsapp Length";
+
+            profileStatus.className =
+            "error";
+
+            return;
+
+        }
+
+        /* =================================
+           IMAGE VALIDATION
+        ================================= */
+
+        try{
+
+            const imageCheck =
+
+            await fetch(profileURL);
+
+            if(!imageCheck.ok){
+
+                throw new Error();
+
+            }
+
+        }
+        catch{
+
+            profileStatus.innerHTML =
+
+            "Invalid Profile Image URL";
+
+            profileStatus.className =
+            "error";
+
+            return;
+
+        }
+
+        /* =================================
+           USER ID
+        ================================= */
+
+        const generatedUserID =
+
+        Math.floor(
+
+            1000000 +
+            Math.random() * 9000000
+
+        );
+
+        /* =================================
+           SAVE USER
+        ================================= */
+
+        await setDoc(
+
+            doc(
+                db,
+                "users",
+                user.uid
+            ),
+
+            {
+
+                user_id:
+                generatedUserID,
+
+                uid:
+                user.uid,
+
+                full_name:
+                fullName,
+
+                email:
+                email,
+
+                dob:
+                dob,
+
+                profile_photo:
+                profileURL,
+
+                whatsapp:
+                whatsapp,
+
+                created_at:
+                new Date()
+                .toISOString()
+
+            }
+
+        );
+
+        profileStatus.innerHTML =
+
+        "Profile Saved Successfully";
+
+        profileStatus.className =
+        "success";
+
+        setTimeout(()=>{
+
+            window.location.reload();
+
+        },1200);
+
+    }
+);
+
+/* =========================================
+OPTIONAL SIDEBAR ACTIVE BUTTON
+REPLACE openTab() WITH THIS VERSION
+========================================= */
+
+window.openTab = function(event, tabId){
+
+    /* =====================================
+       HIDE ALL TABS
+    ===================================== */
+
+    document
+    .querySelectorAll(".tabSection")
+    .forEach(section=>{
+
+        section.classList.remove(
+            "activeTab"
+        );
+
+    });
+
+    /* =====================================
+       REMOVE ACTIVE BUTTON
+    ===================================== */
+
+    document
+    .querySelectorAll(".sidebar button")
+    .forEach(button=>{
+
+        button.classList.remove(
+            "activeSidebarBtn"
+        );
+
+    });
+
+    /* =====================================
+       SHOW TARGET TAB
+    ===================================== */
+
+    const targetTab =
+    document.getElementById(tabId);
+
+    if(targetTab){
+
+        targetTab.classList.add(
+            "activeTab"
+        );
+
+    }
+
+    /* =====================================
+       ACTIVE SIDEBAR BUTTON
+    ===================================== */
+
+    const clickedButton =
+    event.target;
+
+    if(clickedButton){
+
+        clickedButton.classList.add(
+            "activeSidebarBtn"
+        );
+
+    }
+
+}
+
+/* =========================================
+VISIT HISTORY
+========================================= */
+
+async function loadVisitHistory(){
+
+    const user =
+    auth.currentUser;
+
+    if(!user) return;
+
+    const table =
+    document.getElementById(
+        "visitTable"
+    );
+
+    if(!table) return;
+
+    table.innerHTML = "";
+
+    try{
+
+        /* =====================================
+           SIMPLE QUERY
+        ===================================== */
+
+        const q = query(
+
+            collection(db,"visit_logs"),
+
+            where(
+                "uid",
+                "==",
+                user.uid
+            )
+
+        );
+
+        const snapshot =
+        await getDocs(q);
+
+        /* =====================================
+           LOCAL ARRAY
+        ===================================== */
+
+        const logs = [];
+
+        snapshot.forEach(docSnap=>{
+
+            logs.push({
+
+                id:
+                docSnap.id,
+
+                ...docSnap.data()
+
+            });
+
+        });
+
+        /* =====================================
+           LOCAL SORT
+        ===================================== */
+
+        logs.sort((a,b)=>{
+
+            return new Date(
+                b.timestamp
+            ) -
+
+            new Date(
+                a.timestamp
+            );
+
+        });
+
+        /* =====================================
+           EMPTY CHECK
+        ===================================== */
+
+        if(logs.length === 0){
+
+            table.innerHTML = `
+
+                <tr>
+
+                    <td colspan="6">
+
+                        No Visit History Found
+
+                    </td>
+
+                </tr>
+
+            `;
+
+            return;
+
+        }
+
+        /* =====================================
+           RENDER
+        ===================================== */
+
+        logs.forEach(data=>{
+
+            const current =
+            data.current || {};
+
+            const previous =
+            data.previous || {};
+
+            const next =
+            data.next || {};
+
+            table.innerHTML += `
+
+                <tr>
+
+                    <td>
+
+                        ${current.log_id || "-"}
+
+                    </td>
+
+                    <td>
+
+                        ${current.title || "-"}
+
+                    </td>
+
+                    <td>
+
+                        ${data.diagnostics?.device || "-"}
+
+                    </td>
+
+                    <td>
+
+                        <a
+                        href="${previous.url || '#'}"
+                        target="_blank">
+
+                            ${previous.title || "Previous"}
+
+                        </a>
+
+                    </td>
+
+                    <td>
+
+                        <a
+                        href="${next.url || '#'}"
+                        target="_blank">
+
+                            ${next.title || "Next"}
+
+                        </a>
+
+                    </td>
+
+                    <td>
+
+                        <button
+                        onclick="openDiagnostic('${data.id}')">
+
+                            Diagnostic
+
+                        </button>
+
+                    </td>
+
+                </tr>
+
+            `;
+
+        });
+
+        console.log(
+            "Visit History Loaded"
+        );
+
+    }
+    catch(error){
+
+        console.error(
+            "Visit History Error",
+            error
+        );
+
+    }
+
+}
+
+/* =========================================================
+REPLACE COMPLETE loadVisitedPages()
+========================================================= */
+
+async function loadVisitedPages(){
+
+    const user =
+    auth.currentUser;
+
+    if(!user) return;
+
+    const select =
+    document.getElementById(
+        "visitedPagesSelect"
+    );
+
+    if(!select) return;
+
+    select.innerHTML = `
+
+        <option value="">
+            Select Visited Page
+        </option>
+
+    `;
+
+    try{
+
+        /* =====================================
+           SIMPLE QUERY
+        ===================================== */
+
+        const q = query(
+
+            collection(db,"visit_logs"),
+
+            where(
+                "uid",
+                "==",
+                user.uid
+            )
+
+        );
+
+        const snapshot =
+        await getDocs(q);
+
+        const logs = [];
+
+        snapshot.forEach(docSnap=>{
+
+            logs.push({
+
+                id:
+                docSnap.id,
+
+                ...docSnap.data()
+
+            });
+
+        });
+
+        /* =====================================
+           LOCAL SORT
+        ===================================== */
+
+        logs.sort((a,b)=>{
+
+            return new Date(
+                b.timestamp
+            ) -
+
+            new Date(
+                a.timestamp
+            );
+
+        });
+
+        /* =====================================
+           EMPTY CHECK
+        ===================================== */
+
+        if(logs.length === 0){
+
+            console.log(
+                "No Logs Found"
+            );
+
+            return;
+
+        }
+
+        /* =====================================
+           RENDER OPTIONS
+        ===================================== */
+
+        logs.forEach(data=>{
+
+            const current =
+            data.current || {};
+
+            if(
+
+                !current.title ||
+
+                !current.log_id
+
+            ){
+
+                return;
+
+            }
+
+            const option =
+            document.createElement(
+                "option"
+            );
+
+            option.value =
+            data.id;
+
+            option.textContent =
+
+            current.title +
+
+            " | " +
+
+            current.log_id;
+
+            option.dataset.url =
+            current.url || "";
+
+            option.dataset.title =
+            current.title || "";
+
+            option.dataset.description =
+            current.description || "";
+
+            select.appendChild(
+                option
+            );
+
+        });
+
+        console.log(
+            "Feedback Pool Generated"
+        );
+
+    }
+    catch(error){
+
+        console.error(
+            "Visited Pages Error",
+            error
+        );
+
+    }
+
+}
+
+/* =========================================
+FEEDBACK AUTO FILL
+========================================= */
+
+document
+.getElementById(
+    "visitedPagesSelect"
+)
+.addEventListener(
+    "change",
+    (event)=>{
+
+        const option =
+
+        event.target.selectedOptions[0];
+
+        if(!option) return;
+
+        selectedVisitLog =
+        option.value;
+
+        document
+        .getElementById(
+            "feedbackTitle"
+        )
+        .value =
+
+        option.dataset.title || "";
+
+        document
+        .getElementById(
+            "feedbackDescription"
+        )
+        .value =
+
+        option.dataset.description || "";
+
+    }
+);
+
+/* =========================================
+SUBMIT FEEDBACK
+========================================= */
+
+document
+.getElementById(
+    "submitFeedbackBtn"
+)
+.addEventListener(
+    "click",
+    async()=>{
+
+        const user =
+        auth.currentUser;
+
+        if(!user){
+
+            alert(
+                "Login Required"
+            );
+
+            return;
+
+        }
+
+        if(!selectedVisitLog){
+
+            alert(
+                "Select Visited Page"
+            );
+
+            return;
+
+        }
+
+        const feedbackMessage =
+
+        document
+        .getElementById(
+            "feedbackMessage"
+        )
+        .value
+        .trim();
+
+        if(!feedbackMessage){
+
+            alert(
+                "Feedback Required"
+            );
+
+            return;
+
+        }
+
+        const selectedOption =
+
+        document
+        .getElementById(
+            "visitedPagesSelect"
+        )
+        .selectedOptions[0];
+
+        const feedbackID =
+
+        "FB_" +
+
+        Math.floor(
+
+            100000 +
+            Math.random() * 900000
+
+        );
+
+        await addDoc(
+
+            collection(
+                db,
+                "feedbacks"
+            ),
+
+            {
+
+                feedback_id:
+                feedbackID,
+
+                uid:
+                user.uid,
+
+                email:
+                user.email,
+
+                log_id:
+                selectedVisitLog,
+
+                url:
+                selectedOption
+                .dataset
+                .url,
+
+                title:
+                selectedOption
+                .dataset
+                .title,
+
+                description:
+                selectedOption
+                .dataset
+                .description,
+
+                feedback:
+                feedbackMessage,
+
+                timestamp:
+                new Date()
+                .toISOString()
+
+            }
+
+        );
+
+        document
+        .getElementById(
+            "feedbackStatus"
+        )
+        .innerHTML =
+
+        "Feedback Submitted Successfully";
+
+        document
+        .getElementById(
+            "feedbackStatus"
+        )
+        .className =
+        "success";
+
+        document
+        .getElementById(
+            "feedbackMessage"
+        )
+        .value = "";
+
+    }
+);
+
+/* =========================================
+DIAGNOSTIC
+========================================= */
+
+/* =========================================================
+DYNAMIC DIAGNOSTIC CARD ENGINE
+========================================================= */
+
+window.openDiagnostic = async function(logID){
+
+    try{
+
+        /* =================================================
+           REMOVE OLD CARD
+        ================================================= */
+
+        const oldModal =
+
+        document.getElementById(
+            "diagnosticOverlay"
+        );
+
+        if(oldModal){
+
+            oldModal.remove();
+
+        }
+
+        /* =================================================
+           FIRESTORE FETCH
+        ================================================= */
+
+        const diagnosticRef =
+
+        doc(
+            db,
+            "visit_logs",
+            logID
+        );
+
+        const diagnosticSnap =
+
+        await getDoc(
+            diagnosticRef
+        );
+
+        if(!diagnosticSnap.exists()){
+
+            alert(
+                "Diagnostic Not Found"
+            );
+
+            return;
+
+        }
+
+        const data =
+        diagnosticSnap.data();
+
+        const current =
+        data.current || {};
+
+        const previous =
+        data.previous || {};
+
+        const next =
+        data.next || {};
+
+        const diagnostics =
+        data.diagnostics || {};
+
+        /* =================================================
+           OVERLAY
+        ================================================= */
+
+        const overlay =
+        document.createElement("div");
+
+        overlay.id =
+        "diagnosticOverlay";
+
+        overlay.style = `
+
+            position:fixed;
+            inset:0;
+            background:rgba(0,0,0,0.75);
+            backdrop-filter:blur(4px);
+            z-index:999999;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            padding:20px;
+
+        `;
+
+        /* =================================================
+           CARD
+        ================================================= */
+
+        const card =
+        document.createElement("div");
+
+        card.id =
+        "diagnosticCard";
+
+        card.style = `
+
+            width:100%;
+            max-width:950px;
+            max-height:92vh;
+            overflow:auto;
+            background:#111827;
+            border:1px solid #334155;
+            border-radius:20px;
+            padding:25px;
+            color:white;
+            position:relative;
+            box-shadow:
+            0 0 40px rgba(0,0,0,0.5);
+
+        `;
+
+        /* =================================================
+           CLOSE ICON
+        ================================================= */
+
+        const closeIcon =
+        document.createElement("div");
+
+        closeIcon.innerHTML = "✕";
+
+        closeIcon.style = `
+
+            position:absolute;
+            top:18px;
+            right:22px;
+            font-size:26px;
+            cursor:pointer;
+            color:#cbd5e1;
+
+        `;
+
+        closeIcon.onclick = ()=>{
+
+            overlay.remove();
+
+        };
+
+        /* =================================================
+           REPORT HTML
+        ================================================= */
+
+        card.innerHTML += `
+
+            <h1
+            style="
+            margin-bottom:25px;
+            color:#60a5fa;">
+
+                Diagnostic Report
+
+            </h1>
+
+            <div
+            style="
+            display:grid;
+            gap:18px;">
+
+                <!-- CURRENT -->
+
+                <div
+                style="
+                background:#1e293b;
+                padding:18px;
+                border-radius:12px;">
+
+                    <h2>
+                        Current Page
+                    </h2>
+
+                    <p>
+                        <b>Log ID:</b>
+
+                        ${current.log_id || "-"}
+                    </p>
+
+                    <p>
+                        <b>Title:</b>
+
+                        ${current.title || "-"}
+                    </p>
+
+                    <p>
+                        <b>URL:</b>
+
+                        <a
+                        href="${current.url || '#'}"
+                        target="_blank"
+                        style="color:#60a5fa;">
+
+                            ${current.url || "-"}
+
+                        </a>
+
+                    </p>
+
+                    <p>
+                        <b>Description:</b>
+
+                        ${current.description || "-"}
+                    </p>
+
+                </div>
+
+                <!-- PREVIOUS -->
+
+                <div
+                style="
+                background:#1e293b;
+                padding:18px;
+                border-radius:12px;">
+
+                    <h2>
+                        Previous Page
+                    </h2>
+
+                    <p>
+                        <b>Log ID:</b>
+
+                        ${previous.log_id || "-"}
+                    </p>
+
+                    <p>
+                        <b>Title:</b>
+
+                        ${previous.title || "-"}
+                    </p>
+
+                    <p>
+                        <b>URL:</b>
+
+                        <a
+                        href="${previous.url || '#'}"
+                        target="_blank"
+                        style="color:#60a5fa;">
+
+                            ${previous.url || "-"}
+
+                        </a>
+
+                    </p>
+
+                </div>
+
+                <!-- NEXT -->
+
+                <div
+                style="
+                background:#1e293b;
+                padding:18px;
+                border-radius:12px;">
+
+                    <h2>
+                        Next Page
+                    </h2>
+
+                    <p>
+                        <b>Log ID:</b>
+
+                        ${next.log_id || "-"}
+                    </p>
+
+                    <p>
+                        <b>Title:</b>
+
+                        ${next.title || "-"}
+                    </p>
+
+                    <p>
+                        <b>URL:</b>
+
+                        <a
+                        href="${next.url || '#'}"
+                        target="_blank"
+                        style="color:#60a5fa;">
+
+                            ${next.url || "-"}
+
+                        </a>
+
+                    </p>
+
+                </div>
+
+                <!-- DEVICE -->
+
+                <div
+                style="
+                background:#1e293b;
+                padding:18px;
+                border-radius:12px;">
+
+                    <h2>
+                        Device & Browser
+                    </h2>
+
+                    <p>
+                        <b>Device:</b>
+
+                        ${diagnostics.device || "-"}
+                    </p>
+
+                    <p>
+                        <b>Platform:</b>
+
+                        ${diagnostics.platform || "-"}
+                    </p>
+
+                    <p>
+                        <b>Viewport:</b>
+
+                        ${diagnostics.viewport || "-"}
+                    </p>
+
+                    <p>
+                        <b>Language:</b>
+
+                        ${diagnostics.language || "-"}
+                    </p>
+
+                    <p>
+                        <b>User Agent:</b>
+
+                        ${diagnostics.user_agent || "-"}
+                    </p>
+
+                </div>
+
+                <!-- NETWORK -->
+
+                <div
+                style="
+                background:#1e293b;
+                padding:18px;
+                border-radius:12px;">
+
+                    <h2>
+                        Network & Performance
+                    </h2>
+
+                    <p>
+                        <b>Online:</b>
+
+                        ${diagnostics.online}
+                    </p>
+
+                    <p>
+                        <b>Load Time:</b>
+
+                        ${diagnostics.load_time || "-"}
+                    </p>
+
+                    <p>
+                        <b>Referrer:</b>
+
+                        ${diagnostics.referrer || "-"}
+                    </p>
+
+                </div>
+
+                <!-- WARNINGS -->
+
+                <div
+                style="
+                background:#1e293b;
+                padding:18px;
+                border-radius:12px;">
+
+                    <h2>
+                        Console Warnings
+                    </h2>
+
+                    <pre
+                    style="
+                    white-space:pre-wrap;
+                    color:#fca5a5;">
+
+${JSON.stringify(
+diagnostics.warnings || [],
+null,
+2
+)}
+
+                    </pre>
+
+                </div>
+
+            </div>
+
+            <!-- BUTTONS -->
+
+            <div
+            style="
+            display:flex;
+            gap:15px;
+            flex-wrap:wrap;
+            margin-top:30px;">
+
+                <button
+                id="downloadPDFBtn"
+                style="
+                flex:1;
+                background:#2563eb;
+                color:white;
+                border:none;
+                padding:14px;
+                border-radius:10px;
+                cursor:pointer;">
+
+                    Download PDF
+
+                </button>
+
+                <button
+                id="saveImageBtn"
+                style="
+                flex:1;
+                background:#0f766e;
+                color:white;
+                border:none;
+                padding:14px;
+                border-radius:10px;
+                cursor:pointer;">
+
+                    Save as Image
+
+                </button>
+
+                <button
+                id="closeDiagnosticBtn"
+                style="
+                flex:1;
+                background:#dc2626;
+                color:white;
+                border:none;
+                padding:14px;
+                border-radius:10px;
+                cursor:pointer;">
+
+                    Close
+
+                </button>
+
+            </div>
+
+        `;
+
+        card.appendChild(
+            closeIcon
+        );
+
+        overlay.appendChild(
+            card
+        );
+
+        document.body.appendChild(
+            overlay
+        );
+
+        /* =================================================
+           CLOSE OUTSIDE
+        ================================================= */
+
+        overlay.addEventListener(
+            "click",
+            (event)=>{
+
+                if(
+
+                    event.target ===
+                    overlay
+
+                ){
+
+                    overlay.remove();
+
+                }
+
+            }
+        );
+
+        /* =================================================
+           CLOSE BUTTON
+        ================================================= */
+
+        document
+        .getElementById(
+            "closeDiagnosticBtn"
+        )
+        .addEventListener(
+            "click",
+            ()=>{
+
+                overlay.remove();
+
+            }
+        );
+
+/* =========================================================
+SAVE AS IMAGE
+========================================================= */
+
+document
+.getElementById(
+    "saveImageBtn"
+)
+.addEventListener(
+    "click",
+    async()=>{
+
+        /* =====================================
+           REMOVE HEIGHT LIMIT
+        ===================================== */
+
+        const originalMaxHeight =
+        card.style.maxHeight;
+
+        const originalOverflow =
+        card.style.overflow;
+
+        card.style.maxHeight =
+        "none";
+
+        card.style.overflow =
+        "visible";
+
+        /* =====================================
+           FULL CANVAS
+        ===================================== */
+
+        const canvas =
+
+        await html2canvas(card,{
+
+            scale:2,
+
+            useCORS:true,
+
+            allowTaint:true,
+
+            windowWidth:
+            card.scrollWidth,
+
+            windowHeight:
+            card.scrollHeight
+
+        });
+
+        /* =====================================
+           RESTORE
+        ===================================== */
+
+        card.style.maxHeight =
+        originalMaxHeight;
+
+        card.style.overflow =
+        originalOverflow;
+
+        /* =====================================
+           DOWNLOAD
+        ===================================== */
+
+        const link =
+        document.createElement("a");
+
+        link.download =
+
+        current.log_id +
+
+        "_diagnostic.png";
+
+        link.href =
+        canvas.toDataURL(
+            "image/png"
+        );
+
+        link.click();
+
+    });
+
+/* =========================================================
+DOWNLOAD PDF
+========================================================= */
+
+document
+.getElementById(
+    "downloadPDFBtn"
+)
+.addEventListener(
+    "click",
+    async()=>{
+
+        /* =====================================
+           REMOVE SCROLL LIMIT
+        ===================================== */
+
+        const originalMaxHeight =
+        card.style.maxHeight;
+
+        const originalOverflow =
+        card.style.overflow;
+
+        card.style.maxHeight =
+        "none";
+
+        card.style.overflow =
+        "visible";
+
+        /* =====================================
+           FULL HTML CAPTURE
+        ===================================== */
+
+        const canvas =
+
+        await html2canvas(card,{
+
+            scale:2,
+
+            useCORS:true,
+
+            allowTaint:true,
+
+            windowWidth:
+            card.scrollWidth,
+
+            windowHeight:
+            card.scrollHeight
+
+        });
+
+        /* =====================================
+           RESTORE
+        ===================================== */
+
+        card.style.maxHeight =
+        originalMaxHeight;
+
+        card.style.overflow =
+        originalOverflow;
+
+        /* =====================================
+           PDF ENGINE
+        ===================================== */
+
+        const imageData =
+
+        canvas.toDataURL(
+            "image/png"
+        );
+
+        const pdf =
+
+        new jspdf.jsPDF(
+            "p",
+            "mm",
+            "a4"
+        );
+
+        const pdfWidth =
+        190;
+
+        const pdfHeight =
+
+        canvas.height *
+        pdfWidth /
+        canvas.width;
+
+        /* =====================================
+           MULTI PAGE SUPPORT
+        ===================================== */
+
+        let heightLeft =
+        pdfHeight;
+
+        let position = 0;
+
+        pdf.addImage(
+
+            imageData,
+
+            "PNG",
+
+            10,
+
+            position,
+
+            pdfWidth,
+
+            pdfHeight
+
+        );
+
+        heightLeft -= 277;
+
+        while(heightLeft > 0){
+
+            position =
+            heightLeft - pdfHeight;
+
+            pdf.addPage();
+
+            pdf.addImage(
+
+                imageData,
+
+                "PNG",
+
+                10,
+
+                position,
+
+                pdfWidth,
+
+                pdfHeight
+
+            );
+
+            heightLeft -= 277;
+
+        }
+
+        /* =====================================
+           DOWNLOAD
+        ===================================== */
+
+        pdf.save(
+
+            current.log_id +
+
+            "_diagnostic.pdf"
+
+        );
+
+    });
+        }
+    catch(error){
+
+        console.error(
+            "Diagnostic Error",
+            error
+        );
+
+        alert(
+            "Diagnostic Load Failed"
+        );
+
+    }
+
+}
+
+/* =========================================
+ADMIN
+========================================= */
+
+window.visitAdmin =
+function(){
+
+    window.location.href =
+
+    "https://anh-dashboard-881238.web.app/admin.html";
+
+}
+
+/* =========================================
+SOFT LOGOUT
+========================================= */
+
+document
+.getElementById(
+"logoutBtn"
+)
+.addEventListener(
+"click",
+async()=>{
+
+    await signOut(auth);
+
+    window.location.href =
+    "https://akshat-881236.github.io/AkshatNetworkHub/";
+
+});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+<!-- jsPDF -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</body>
+</html>
