@@ -7,14 +7,9 @@ SEO
 ===================================================== -->
 <link rel="icon" href="https://akshat-881236.github.io/TrackerJS/Assets/AKNH/icon-192.png" type="image/png">
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta
-name="viewport"
-content="width=device-width, initial-scale=1.0">
-
-<title>
-ANH Admin Dashboard
-</title>
+<title> ANH Admin Dashboard </title>
 
 <meta
 name="description"
@@ -38,269 +33,24 @@ content="ANH Admin Dashboard">
 
 <meta
 property="og:description"
-content="Centralized Admin Analytics Dashboard">
+content="ANH Admin Dashboard - User Analytics, Visit History and Feedback Management">
+
+<meta property="og:image" content="https://akshat-881236.github.io/TrackerJS/Assets/AKNH/icon-192.png">
+<meta property="og:url" content="https://anh-dashboard-881238.web.app/admin.html">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ANH Admin Dashboard">
+<meta name="twitter:description" content="ANH Admin Dashboard - User Analytics, Visit History and Feedback Management">
+<meta name="twitter:image" content="https://akshat-881236.github.io/TrackerJS/Assets/AKNH/icon-192.png">
+<meta name="twitter:url" content="https://anh-dashboard-881238.web.app/admin.html">
 
 <link
 rel="canonical"
 href="https://anh-dashboard-881238.web.app/admin.html">
-
 <!-- =====================================================
 STYLE
 ===================================================== -->
-
-<style>
-
-/* =====================================================
-RESET
-===================================================== */
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial,sans-serif;
-}
-
-body{
-    background:#0f172a;
-    color:white;
-    overflow-x:hidden;
-}
-
-/* =====================================================
-LOGIN
-===================================================== */
-
-.loginWrapper{
-    min-height:100vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:20px;
-}
-
-.loginCard{
-    width:100%;
-    max-width:420px;
-    background:#1e293b;
-    border:1px solid #334155;
-    border-radius:16px;
-    padding:25px;
-}
-
-.loginCard h2{
-    margin-bottom:15px;
-}
-
-.loginCard p{
-    color:#cbd5e1;
-    margin-bottom:10px;
-}
-
-/* =====================================================
-INPUTS
-===================================================== */
-
-input,
-button{
-    width:100%;
-    padding:14px;
-    border:none;
-    border-radius:10px;
-    margin-top:12px;
-}
-
-input{
-    background:#0f172a;
-    color:white;
-    border:1px solid #475569;
-}
-
-button{
-    background:#2563eb;
-    color:white;
-    cursor:pointer;
-    font-weight:bold;
-}
-
-button:hover{
-    opacity:0.9;
-}
-
-/* =====================================================
-HEADER
-===================================================== */
-
-header{
-    background:#111827;
-    padding:15px;
-    border-bottom:1px solid #334155;
-}
-
-.headerContainer{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:20px;
-    flex-wrap:wrap;
-}
-
-.adminInfo{
-    display:flex;
-    align-items:center;
-    gap:15px;
-}
-
-.adminInfo img{
-    width:80px;
-    height:80px;
-    border-radius:50%;
-    object-fit:cover;
-    border:3px solid white;
-}
-
-.adminMeta h2{
-    font-size:22px;
-}
-
-.adminMeta p{
-    color:#cbd5e1;
-    margin-top:4px;
-}
-
-/* =====================================================
-LAYOUT
-===================================================== */
-
-.dashboard{
-    display:flex;
-    min-height:100vh;
-}
-
-/* =====================================================
-SIDEBAR
-===================================================== */
-
-.sidebar{
-    width:260px;
-    background:#111827;
-    border-right:1px solid #334155;
-    padding:20px;
-}
-
-.sidebar button{
-    text-align:left;
-}
-
-/* =====================================================
-CONTENT
-===================================================== */
-
-.content{
-    flex:1;
-    padding:20px;
-}
-
-.card{
-    background:#1e293b;
-    border:1px solid #334155;
-    border-radius:14px;
-    padding:20px;
-    margin-bottom:20px;
-}
-
-.card h2{
-    margin-bottom:15px;
-}
-
-/* =====================================================
-TABLE
-===================================================== */
-
-table{
-    width:100%;
-    border-collapse:collapse;
-}
-
-table th,
-table td{
-    border:1px solid #475569;
-    padding:12px;
-    text-align:left;
-}
-
-table th{
-    background:#111827;
-}
-
-/* =====================================================
-SPA
-===================================================== */
-
-.tabSection{
-    display:none;
-}
-
-.activeTab{
-    display:block;
-}
-
-/* =====================================================
-STATUS
-===================================================== */
-
-.success{
-    color:#22c55e;
-    margin-top:10px;
-}
-
-.error{
-    color:#ef4444;
-    margin-top:10px;
-}
-
-/* =====================================================
-RESPONSIVE
-===================================================== */
-
-@media(max-width:992px){
-
-    .dashboard{
-        flex-direction:column;
-    }
-
-    .sidebar{
-        width:100%;
-        display:flex;
-        overflow-x:auto;
-        gap:10px;
-    }
-
-    .sidebar button{
-        min-width:180px;
-    }
-
-    table{
-        display:block;
-        overflow-x:auto;
-    }
-
-}
-
-@media(max-width:600px){
-
-    .content{
-        padding:12px;
-    }
-
-    .adminInfo{
-        flex-direction:column;
-        align-items:flex-start;
-    }
-
-}
-
-</style>
+<link rel="stylesheet" href="https://anh-dashboard-881238.web.app/admin.css">
 <meta name="google-site-verification" content="GcRmUrIPZNUQjc7onJavMmzT2IwIg-9oJ26cr4pNGBI" />
 <script src="https://akshat-881236.github.io/TrackerJS/MITLicense-Term-of-Use--Privacy.min.js" defer></script>
 <script src="https://akshat-881236.github.io/TrackerJS/akshatnetworkhub.min.js" defer></script>
@@ -562,7 +312,6 @@ FIREBASE
 ===================================================== -->
 
 <script type="module">
-
 /* =====================================================
 IMPORTS
 ===================================================== */
@@ -1346,8 +1095,7 @@ document
 
     }
 );
-
 </script>
-
+<script src="https://anh-dashboard-881238.web.app/loader.js"></script>
 </body>
 </html>

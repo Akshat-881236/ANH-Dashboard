@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -52,6 +51,7 @@ content="Akshat Network Hub Dashboard - User Visit History, Diagnostics and Feed
 <meta name="twitter:url" content="https://anh-dashboard-881238.web.app">
 
 <link rel="icon" href="https://akshat-881236.github.io/TrackerJS/Assets/AKNH/icon-192.png" type="image/png">
+<link rel="apple-touch-icon" href="https://akshat-881236.github.io/TrackerJS/Assets/AKNH/icon-192.png">
 
 <link
 rel="canonical"
@@ -60,291 +60,7 @@ href="https://anh-dashboard-881238.web.app">
 <!-- =========================================
 STYLE
 ========================================= -->
-
-<style>
-
-/* =========================================
-RESET
-========================================= */
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial,sans-serif;
-}
-
-body{
-    background:#0f172a;
-    color:white;
-    overflow-x:hidden;
-}
-
-/* =========================================
-HEADER
-========================================= */
-
-header{
-    background:#111827;
-    padding:15px;
-    border-bottom:1px solid #334155;
-}
-
-.headerContainer{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:20px;
-    flex-wrap:wrap;
-}
-
-.userInfo{
-    display:flex;
-    align-items:center;
-    gap:15px;
-}
-
-.userInfo img{
-    width:90px;
-    height:90px;
-    border-radius:50%;
-    object-fit:cover;
-    border:3px solid white;
-}
-
-.userMeta h2{
-    font-size:22px;
-}
-
-.userMeta p{
-    color:#cbd5e1;
-    margin-top:4px;
-}
-
-/* =========================================
-LAYOUT
-========================================= */
-
-.mainContainer{
-    display:flex;
-    min-height:100vh;
-}
-
-/* =========================================
-SIDEBAR
-========================================= */
-
-.sidebar{
-    width:260px;
-    background:#111827;
-    padding:20px;
-    border-right:1px solid #334155;
-}
-
-.sidebar button{
-    width:100%;
-    padding:14px;
-    margin-bottom:10px;
-    border:none;
-    border-radius:10px;
-    background:#1e293b;
-    color:white;
-    cursor:pointer;
-    text-align:left;
-    font-weight:bold;
-}
-
-.sidebar button:hover{
-    background:#2563eb;
-}
-
-/* =========================================
-CONTENT
-========================================= */
-
-.content{
-    flex:1;
-    padding:20px;
-}
-
-.card{
-    background:#1e293b;
-    border:1px solid #334155;
-    border-radius:14px;
-    padding:20px;
-    margin-bottom:20px;
-}
-
-.card h2{
-    margin-bottom:15px;
-}
-
-/* =========================================
-TABLE
-========================================= */
-
-table{
-    width:100%;
-    border-collapse:collapse;
-}
-
-table th,
-table td{
-    border:1px solid #475569;
-    padding:12px;
-    text-align:left;
-}
-
-table th{
-    background:#111827;
-}
-
-/* =========================================
-FORM
-========================================= */
-
-input,
-textarea,
-select,
-button{
-    width:100%;
-    padding:14px;
-    border:none;
-    border-radius:8px;
-    margin-top:10px;
-}
-
-input,
-textarea,
-select{
-    background:#0f172a;
-    color:white;
-    border:1px solid #475569;
-}
-
-button{
-    background:#2563eb;
-    color:white;
-    cursor:pointer;
-    font-weight:bold;
-}
-
-button:hover{
-    opacity:0.9;
-}
-
-/* =========================================
-SPA
-========================================= */
-
-.tabSection{
-    display:none;
-}
-
-.activeTab{
-    display:block;
-}
-
-/* =========================================
-STATUS
-========================================= */
-
-.success{
-    color:#22c55e;
-    margin-top:10px;
-}
-
-.error{
-    color:#ef4444;
-    margin-top:10px;
-}
-
-/* =========================================
-RESPONSIVE
-========================================= */
-
-@media(max-width:992px){
-
-    .mainContainer{
-        flex-direction:column;
-    }
-
-    .sidebar{
-        width:100%;
-        display:flex;
-        overflow-x:auto;
-        gap:10px;
-    }
-
-    .sidebar button{
-        min-width:180px;
-    }
-
-    table{
-        display:block;
-        overflow-x:auto;
-    }
-
-}
-
-@media(max-width:600px){
-
-    .headerContainer{
-        flex-direction:column;
-        align-items:flex-start;
-    }
-
-    .userInfo{
-        flex-direction:column;
-        align-items:flex-start;
-    }
-
-    .userInfo img{
-        width:70px;
-        height:70px;
-    }
-
-    .content{
-        padding:12px;
-    }
-
-}
-
-.hidden{
-    display:none;
-}
-
-#profilePreview{
-    display:block;
-}
-
-/* =========================================
-FIX SPA TAB BUG
-ADD THIS INSIDE <style>
-========================================= */
-
-.tabSection{
-    display:none;
-}
-
-.tabSection.activeTab{
-    display:block;
-}
-
-/* =========================================
-OPTIONAL BETTER ACTIVE BUTTON UI
-ADD INSIDE <style>
-========================================= */
-
-.sidebar button.activeSidebarBtn{
-
-    background:#2563eb;
-
-    border:1px solid #60a5fa;
-
-}
-
-</style>
+<link rel="stylesheet" href="https://anh-dashboard-881238.web.app/index.css">
 <script src="https://akshat-881236.github.io/TrackerJS/MITLicense-Term-of-Use--Privacy.min.js" defer></script>
 <script src="https://akshat-881236.github.io/TrackerJS/akshatnetworkhub.min.js" defer></script>
 <script src="https://akshat-881236.github.io/TrackerJS/akshat-add-nav.js" defer></script>
@@ -548,22 +264,363 @@ CONTENT
 DASHBOARD
 ========================================= -->
 
+<!-- =====================================================
+DASHBOARD TAB
+REPLACE OLD dashboardTab SECTION
+===================================================== -->
+
 <section
 id="dashboardTab"
 class="tabSection activeTab">
 
-<div class="card">
+    <!-- ============================================= -->
+    <!-- HERO -->
+    <!-- ============================================= -->
 
-    <h2>
-        Analytics Overview
-    </h2>
+    <div class="dashboardHero">
 
-    <p>
-        Welcome to ANH Dashboard
-    </p>
+        <div class="heroLeft">
 
-</div>
+            <h1>
+                Welcome to ANH Dashboard
+            </h1>
 
+            <p>
+
+                Akshat Network Hub (ANH) Dashboard is a
+                centralized Firebase-powered ecosystem
+                designed to unify authentication,
+                visit intelligence, diagnostics,
+                feedback systems, analytics,
+                and interconnected ANH projects.
+
+            </p>
+
+            <div class="heroButtons">
+
+                <a
+                href="https://akshat-881236.github.io/AkshatNetworkHub/"
+                target="_blank">
+
+                    Official Hub
+
+                </a>
+
+                <a
+                href="https://github.com/Akshat-881236"
+                target="_blank">
+
+                    GitHub
+
+                </a>
+
+            </div>
+
+        </div>
+
+        <div class="heroRight">
+
+            <img
+            src="https://akshat-145609.github.io/MyPortfolioSite/Akshat.png">
+
+        </div>
+
+    </div>
+
+    <!-- ============================================= -->
+    <!-- QUICK STATS -->
+    <!-- ============================================= -->
+
+    <div class="dashboardGrid">
+
+        <div class="dashboardCard">
+
+            <h3>
+                Firebase Dashboard
+            </h3>
+
+            <p>
+
+                Unified authentication,
+                visit history, diagnostics,
+                analytics, and SPA management.
+
+            </p>
+
+        </div>
+
+        <div class="dashboardCard">
+
+            <h3>
+                Visit Intelligence
+            </h3>
+
+            <p>
+
+                Tracks current, previous,
+                and next page navigation
+                with Log_ID infrastructure.
+
+            </p>
+
+        </div>
+
+        <div class="dashboardCard">
+
+            <h3>
+                Diagnostics System
+            </h3>
+
+            <p>
+
+                Generate advanced reports,
+                export diagnostics as PDF
+                or images, and troubleshoot
+                issues dynamically.
+
+            </p>
+
+        </div>
+
+        <div class="dashboardCard">
+
+            <h3>
+                Feedback Verification
+            </h3>
+
+            <p>
+
+                Smart feedback system linked
+                with visited pages and
+                navigation intelligence.
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- ============================================= -->
+    <!-- DOCUMENTATION -->
+    <!-- ============================================= -->
+
+    <div class="dashboardSection">
+
+        <h2>
+            Documentation
+        </h2>
+
+        <div class="linkGrid">
+
+            <a
+            href="https://akshat-881236.github.io/TrackerJS/terms.htm"
+            target="_blank"
+            class="quickLink">
+
+                Terms & Conditions
+
+            </a>
+
+            <a
+            href="https://akshat-881236.github.io/TrackerJS/privacy.htm"
+            target="_blank"
+            class="quickLink">
+
+                Privacy Policy
+
+            </a>
+
+            <a
+            href="https://akshat-881236.github.io/TrackerJS/usage-manual.htm"
+            target="_blank"
+            class="quickLink">
+
+                Usage Manual
+
+            </a>
+
+            <a
+            href="https://firebase.google.com/docs"
+            target="_blank"
+            class="quickLink">
+
+                Firebase Docs
+
+            </a>
+
+        </div>
+
+    </div>
+
+    <!-- ============================================= -->
+    <!-- FEATURE PROJECTS -->
+    <!-- ============================================= -->
+
+    <div class="dashboardSection">
+
+        <h2>
+            Featured Projects
+        </h2>
+
+        <div class="projectGrid">
+
+            <a
+            href="https://akshat-881236.github.io/AkshatNetworkHub/" target="_blank" class="projectCard">
+
+                <h3>
+                    Akshat Network Hub
+                </h3>
+
+                <p>
+
+                    Central portfolio ecosystem, analytics infrastructure, navigation intelligence,and dashboard services.
+
+                </p>
+
+            </a>
+
+            <a href="https://akshat-881236.github.io/AkshatNetworkHub/Akshat-881236-main/index.htm" target="_blank" class="projectCard">
+
+                <h3>
+                    ANH - Professional Networking & Announcements
+                </h3>
+
+                <p>
+
+                    Premier destination for professional announcements, LinkedIn showcases, and networking opportunities.
+
+                </p>
+
+            </a>
+
+            <a href="https://akshat-881236.github.io/Quizzone/" target="_blank" class="projectCard">
+
+                <h3>
+                    Quizzone
+                </h3>
+
+                <p>
+
+                    Educational quiz system with responsive learning and analytics support.
+
+                </p>
+
+            </a>
+
+            <a href="https://akshat-881236.github.io/SearchEngine/" target="_blank" class="projectCard">
+
+                <h3>
+                    Search Engine
+                </h3>
+
+                <p>
+
+                    Akshat Network Search Engine powered by Google Custom Search Engine.
+
+                </p>
+
+            </a>
+
+            <a
+            href="https://dpgnotes.web.app/"
+            target="_blank"
+            class="projectCard">
+
+                <h3>
+                    DPGNotes
+                </h3>
+
+                <p>
+
+                    DPGNotes is a modern educational platform for notes, tutorials, university exams, interview preparation, aptitude and placement resources.
+
+                </p>
+
+            </a>
+
+            <a href="https://akshat-881236.github.io/DPGStudent-881238/" target="_blank" class="projectCard">
+
+                <h3>
+                    DPG STM Blog
+                </h3>
+
+                <p>
+
+                    A blogging project dedicated to my college, DPG STM, featuring campus news, events, student achievements, and academic resources.
+
+                </p>
+
+            </a>
+
+            <a href="https://akshat-881236.github.io/URL-Inspector-SEO-Analyst/" target="_blank" class="projectCard">
+
+                <h3>
+                    URL Inspector & SEO Analyst
+                </h3>
+
+                <p>
+
+                    Comprehensive SEO analysis tool for in-depth website audits, performance tracking, and optimization insights.
+
+                </p>
+
+            </a>
+
+            <a href="https://akshat-881236.github.io/SitemapGeneratorXml/" target="_blank" class="projectCard">
+
+                <h3>
+                    Sitemap Generator XML
+                </h3>
+
+                <p>
+
+                    Free online tool to create XML sitemaps for better search engine indexing and SEO performance.
+
+                </p>
+
+            </a>
+
+            <a href="https://akshat-881236.github.io/AkshatNetworkHub/ai/index.htm" target="_blank" class="projectCard">
+
+                <h3>
+                    ANH AI Assistant
+                </h3>
+
+                <p>
+
+                    Official AI Assistant of Akshat Network Hub powered by NVIDIA NIM API and Cloudflare Workers."
+
+                </p>
+
+            </a>
+
+            <a href="https://akshat-881236.github.io/AkshatNetworkHub/MediumStory/index.html" target="_blank" class="projectCard">
+
+                <h3>
+                    ANH Medium Story
+                </h3>
+
+                <p>
+
+                    Explore curated stories, blogs and ideas in Medium Story Fest by Akshat Network Hub.
+
+                </p>
+            </a>
+        </div>
+    </div>
+    <!-- ============================================= -->
+    <!-- SOCIAL LINKS -->
+    <!-- ============================================= -->
+
+    <div class="dashboardSection">
+        <h2> Social Links </h2>
+        <div class="socialGrid">
+            <a href="https://github.com/Akshat-881236" target="_blank"> GitHub </a>
+            <a href="https://x.com/akshatpsd2005" target="_blank"> X / Twitter </a>
+            <a href="https://www.instagram.com/its_akshat_881236/" target="_blank"> Instagram </a>
+            <a href="https://www.linkedin.com/in/akshat-prasad-anh/" target="_blank"> LinkedIn </a>
+        </div>
+    </div>
 </section>
 
 <!-- =========================================
@@ -687,7 +744,6 @@ FIREBASE
 ========================================= -->
 
 <script type="module">
-
 /* =========================================
 IMPORTS
 ========================================= */
@@ -2704,9 +2760,8 @@ async()=>{
 });
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-
 <!-- jsPDF -->
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://anh-dashboard-881238.web.app/loader.js"></script>
 </body>
 </html>

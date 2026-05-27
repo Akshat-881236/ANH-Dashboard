@@ -1,0 +1,756 @@
+/* =========================================
+RESET
+========================================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#0f172a;
+    color:white;
+    overflow-x:hidden;
+}
+
+/* =========================================
+HEADER
+========================================= */
+
+header{
+    background:#111827;
+    padding:15px;
+    border-bottom:1px solid #334155;
+}
+
+.headerContainer{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.userInfo{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.userInfo img{
+    width:90px;
+    height:90px;
+    border-radius:50%;
+    object-fit:cover;
+    border:3px solid white;
+}
+
+.userMeta h2{
+    font-size:22px;
+}
+
+.userMeta p{
+    color:#cbd5e1;
+    margin-top:4px;
+}
+
+/* =========================================
+LAYOUT
+========================================= */
+
+.mainContainer{
+    display:flex;
+    min-height:100vh;
+}
+
+/* =========================================
+SIDEBAR
+========================================= */
+
+.sidebar{
+    width:260px;
+    background:#111827;
+    padding:20px;
+    border-right:1px solid #334155;
+}
+
+.sidebar button{
+    width:100%;
+    padding:14px;
+    margin-bottom:10px;
+    border:none;
+    border-radius:10px;
+    background:#1e293b;
+    color:white;
+    cursor:pointer;
+    text-align:left;
+    font-weight:bold;
+}
+
+.sidebar button:hover{
+    background:#2563eb;
+}
+
+/* =========================================
+CONTENT
+========================================= */
+
+.content{
+    flex:1;
+    padding:20px;
+}
+
+.card{
+    background:#1e293b;
+    border:1px solid #334155;
+    border-radius:14px;
+    padding:20px;
+    margin-bottom:20px;
+}
+
+.card h2{
+    margin-bottom:15px;
+}
+
+/* =========================================
+TABLE
+========================================= */
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+table th,
+table td{
+    border:1px solid #475569;
+    padding:12px;
+    text-align:left;
+}
+
+table th{
+    background:#111827;
+}
+
+/* =========================================
+FORM
+========================================= */
+
+input,
+textarea,
+select,
+button{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:8px;
+    margin-top:10px;
+}
+
+input,
+textarea,
+select{
+    background:#0f172a;
+    color:white;
+    border:1px solid #475569;
+}
+
+button{
+    background:#2563eb;
+    color:white;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+button:hover{
+    opacity:0.9;
+}
+
+/* =========================================
+SPA
+========================================= */
+
+.tabSection{
+    display:none;
+}
+
+.activeTab{
+    display:block;
+}
+
+/* =========================================
+STATUS
+========================================= */
+
+.success{
+    color:#22c55e;
+    margin-top:10px;
+}
+
+.error{
+    color:#ef4444;
+    margin-top:10px;
+}
+
+/* =========================================
+RESPONSIVE
+========================================= */
+
+@media(max-width:992px){
+
+    .mainContainer{
+        flex-direction:column;
+    }
+
+    .sidebar{
+        width:100%;
+        display:flex;
+        overflow-x:auto;
+        gap:10px;
+    }
+
+    .sidebar button{
+        min-width:180px;
+    }
+
+    table{
+        display:block;
+        overflow-x:auto;
+    }
+
+}
+
+@media(max-width:600px){
+
+    .headerContainer{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .userInfo{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .userInfo img{
+        width:70px;
+        height:70px;
+    }
+
+    .content{
+        padding:12px;
+    }
+
+}
+
+.hidden{
+    display:none;
+}
+
+#profilePreview{
+    display:block;
+}
+
+/* =========================================
+FIX SPA TAB BUG
+ADD THIS INSIDE <style>
+========================================= */
+
+.tabSection{
+    display:none;
+}
+
+.tabSection.activeTab{
+    display:block;
+}
+
+/* =========================================
+OPTIONAL BETTER ACTIVE BUTTON UI
+ADD INSIDE <style>
+========================================= */
+
+.sidebar button.activeSidebarBtn{
+
+    background:#2563eb;
+
+    border:1px solid #60a5fa;
+
+}
+
+/* =====================================================
+DASHBOARD UI
+ADD INSIDE <style>
+===================================================== */
+
+.dashboardHero{
+
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:30px;
+
+background:#1e293b;
+
+border:1px solid #334155;
+
+border-radius:22px;
+
+padding:35px;
+
+margin-bottom:30px;
+
+flex-wrap:wrap;
+
+}
+
+.heroLeft{
+
+flex:1;
+min-width:280px;
+
+}
+
+.heroLeft h1{
+
+font-size:42px;
+
+margin-bottom:18px;
+
+color:#60a5fa;
+
+}
+
+.heroLeft p{
+
+line-height:1.8;
+
+color:#cbd5e1;
+
+margin-bottom:25px;
+
+}
+
+.heroButtons{
+
+display:flex;
+gap:15px;
+flex-wrap:wrap;
+
+}
+
+.heroButtons a{
+
+background:#2563eb;
+
+padding:12px 22px;
+
+border-radius:12px;
+
+color:white;
+
+text-decoration:none;
+
+font-weight:bold;
+
+}
+
+.heroButtons a:hover{
+
+background:#1d4ed8;
+
+}
+
+.heroRight img{
+
+width:180px;
+
+height:180px;
+
+object-fit:cover;
+
+border-radius:24px;
+
+border:3px solid #60a5fa;
+
+}
+
+.dashboardGrid{
+
+display:grid;
+
+grid-template-columns:
+repeat(auto-fit,minmax(240px,1fr));
+
+gap:22px;
+
+margin-bottom:35px;
+
+}
+
+.dashboardCard{
+
+background:#1e293b;
+
+border:1px solid #334155;
+
+border-radius:18px;
+
+padding:24px;
+
+}
+
+.dashboardCard h3{
+
+margin-bottom:15px;
+
+color:#60a5fa;
+
+}
+
+.dashboardCard p{
+
+line-height:1.7;
+
+color:#cbd5e1;
+
+}
+
+.dashboardSection{
+
+background:#1e293b;
+
+border:1px solid #334155;
+
+border-radius:18px;
+
+padding:28px;
+
+margin-bottom:35px;
+
+}
+
+.dashboardSection h2{
+
+margin-bottom:22px;
+
+color:#60a5fa;
+
+}
+
+.linkGrid,
+.socialGrid{
+
+display:grid;
+
+grid-template-columns:
+repeat(auto-fit,minmax(220px,1fr));
+
+gap:18px;
+
+}
+
+.quickLink,
+.socialGrid a{
+
+background:#0f172a;
+
+border:1px solid #334155;
+
+padding:16px;
+
+border-radius:14px;
+
+text-decoration:none;
+
+color:white;
+
+font-weight:bold;
+
+text-align:center;
+
+}
+
+.quickLink:hover,
+.socialGrid a:hover{
+
+background:#2563eb;
+
+}
+
+.projectGrid{
+
+display:grid;
+
+grid-template-columns:
+repeat(auto-fit,minmax(260px,1fr));
+
+gap:22px;
+
+}
+
+.projectCard{
+
+background:#0f172a;
+
+border:1px solid #334155;
+
+border-radius:18px;
+
+padding:22px;
+
+text-decoration:none;
+
+color:white;
+
+transition:.3s;
+
+}
+
+.projectCard:hover{
+
+transform:translateY(-5px);
+
+border-color:#60a5fa;
+
+}
+
+.projectCard h3{
+
+margin-bottom:14px;
+
+color:#60a5fa;
+
+}
+
+.projectCard p{
+
+line-height:1.7;
+
+color:#cbd5e1;
+
+}
+
+/* =====================================================
+RESPONSIVE
+===================================================== */
+
+@media(max-width:768px){
+
+.heroLeft h1{
+
+font-size:30px;
+
+}
+
+.dashboardHero{
+
+padding:25px;
+
+}
+
+.heroRight{
+
+width:100%;
+text-align:center;
+
+}
+
+.heroRight img{
+
+width:140px;
+height:140px;
+
+}
+
+}
+
+/* =====================================================
+FINAL UI IMPROVEMENTS
+===================================================== */
+
+#dashboardTab{
+
+width:100%;
+
+overflow:hidden;
+
+}
+
+/* =====================================================
+GLOBAL CONTAINER FIX
+===================================================== */
+
+.mainContent{
+
+width:100%;
+
+overflow-x:hidden;
+
+}
+
+/* =====================================================
+CARD SMOOTHNESS
+===================================================== */
+
+.dashboardCard,
+.projectCard,
+.dashboardSection,
+.quickLink,
+.socialGrid a{
+
+transition:
+transform .25s ease,
+background .25s ease,
+border-color .25s ease,
+box-shadow .25s ease;
+
+}
+
+/* =====================================================
+HOVER EFFECTS
+===================================================== */
+
+.dashboardCard:hover,
+.projectCard:hover,
+.quickLink:hover,
+.socialGrid a:hover{
+
+transform:translateY(-4px);
+
+box-shadow:
+0 10px 25px rgba(0,0,0,.25);
+
+}
+
+/* =====================================================
+SCROLLBAR
+===================================================== */
+
+::-webkit-scrollbar{
+
+width:10px;
+height:10px;
+
+}
+
+::-webkit-scrollbar-track{
+
+background:#0f172a;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+background:#334155;
+border-radius:10px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+background:#475569;
+
+}
+
+/* =====================================================
+MOBILE FIXES
+===================================================== */
+
+@media(max-width:768px){
+
+.dashboardGrid,
+.projectGrid,
+.linkGrid,
+.socialGrid{
+
+grid-template-columns:1fr;
+
+}
+
+.dashboardSection{
+
+padding:22px;
+
+}
+
+.dashboardCard{
+
+padding:20px;
+
+}
+
+.projectCard{
+
+padding:20px;
+
+}
+
+.heroButtons{
+
+width:100%;
+
+}
+
+.heroButtons a{
+
+flex:1;
+
+text-align:center;
+
+}
+
+}
+
+/* =====================================================
+EXTRA SMALL DEVICES
+===================================================== */
+
+@media(max-width:480px){
+
+.heroLeft h1{
+
+font-size:26px;
+
+line-height:1.3;
+
+}
+
+.heroLeft p{
+
+font-size:14px;
+
+}
+
+.dashboardSection h2{
+
+font-size:22px;
+
+}
+
+.projectCard h3{
+
+font-size:18px;
+
+}
+
+}
+
+/* =====================================================
+ULTRA WIDE DISPLAY
+===================================================== */
+
+@media(min-width:1600px){
+
+.dashboardHero,
+.dashboardSection{
+
+max-width:1600px;
+
+margin-left:auto;
+margin-right:auto;
+
+}
+
+}
