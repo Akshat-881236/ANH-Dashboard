@@ -824,6 +824,8 @@ document
 
         }
 
+        autoCleanupLogs();
+
     }
 );
 
@@ -1328,6 +1330,183 @@ async function loadFeedbacks(){
 }
 
 /* =====================================================
+AUTO LOG CLEANER
+DELETE OLDEST 40%
+OLDER THAN 3 MONTHS
+===================================================== */
+
+async function autoCleanupLogs(){
+
+    try{
+
+        /* =====================================
+           ADMIN CHECK
+        ===================================== */
+
+        const user =
+        auth.currentUser;
+
+        if(
+
+            !user ||
+
+            user.email !==
+            "its.akshatnetworkhub23@gmail.com"
+
+        ){
+
+            return;
+
+        }
+
+        console.log(
+            "Running Auto Cleanup..."
+        );
+
+        /* =====================================
+           FETCH ALL LOGS
+        ===================================== */
+
+        const snapshot =
+        await getDocs(
+            collection(
+                db,
+                "visit_logs"
+            )
+        );
+
+        const logs = [];
+
+        snapshot.forEach(docSnap=>{
+
+            logs.push({
+
+                id:
+                docSnap.id,
+
+                ...docSnap.data()
+
+            });
+
+        });
+
+        /* =====================================
+           EMPTY
+        ===================================== */
+
+        if(logs.length === 0){
+
+            return;
+
+        }
+
+        /* =====================================
+           SORT OLDEST FIRST
+        ===================================== */
+
+        logs.sort((a,b)=>{
+
+            return new Date(
+                a.timestamp
+            ) -
+
+            new Date(
+                b.timestamp
+            );
+
+        });
+
+        /* =====================================
+           3 MONTH FILTER
+        ===================================== */
+
+        const now =
+        new Date();
+
+        const threeMonthsAgo =
+        new Date();
+
+        threeMonthsAgo.setMonth(
+
+            now.getMonth() - 3
+
+        );
+
+        const oldLogs =
+
+        logs.filter(log=>{
+
+            return new Date(
+                log.timestamp
+            ) < threeMonthsAgo;
+
+        });
+
+        /* =====================================
+           DELETE 40%
+        ===================================== */
+
+        const deleteCount =
+
+        Math.floor(
+
+            oldLogs.length * 0.4
+
+        );
+
+        const logsToDelete =
+
+        oldLogs.slice(
+            0,
+            deleteCount
+        );
+
+        /* =====================================
+           DELETE LOOP
+        ===================================== */
+
+        for(const log of logsToDelete){
+
+            await deleteDoc(
+
+                doc(
+                    db,
+                    "visit_logs",
+                    log.id
+                )
+
+            );
+
+            console.log(
+
+                "Deleted:",
+                log.id
+
+            );
+
+        }
+
+        console.log(
+
+            "Cleanup Complete:",
+            logsToDelete.length,
+            "logs removed"
+
+        );
+
+    }
+    catch(error){
+
+        console.error(
+            "Cleanup Failed",
+            error
+        );
+
+    }
+
+}
+
+/* =====================================================
 LOGOUT
 ===================================================== */
 
@@ -1346,6 +1525,5 @@ document
     }
 );
 </script>
-<script src="https://anh-dashboard-881238.web.app/loader.js"></script>
 </body>
 </html>
